@@ -1,6 +1,6 @@
 {
   "name": "one-antdui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Ant Design components built with Vue.js",
   "author": "One <admin@zcyso.com>",
   "repository": {
@@ -20,11 +20,11 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "site": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "package:dev": "webpack --config build/webpack.package.dev.config.js",
-    "package:prod": "webpack --config build/webpack.package.prod.config.js",
-    "package": "npm run package:dev && npm run package:prod"
+    "build:dev": "webpack --config build/webpack.package.dev.config.js",
+    "build:prod": "webpack --config build/webpack.package.prod.config.js",
+    "build": "npm run build:dev && npm run build:prod"
   },
   "dependencies": {
     "async-validator": "^1.8.2",

@@ -112,7 +112,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './site/main.js'
+    app: './docs/main.js'
   },
   output: {
     path: config.build.assetsRoot,
@@ -125,7 +125,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('site')
+      '@': resolve('docs')
     }
   },
   module: {
@@ -139,7 +139,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('site'), resolve('src'), resolve('test')],
+        include: [resolve('docs'), resolve('src'), resolve('test')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -152,7 +152,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('site'), resolve('src'), resolve('test')]
+        include: [resolve('docs'), resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

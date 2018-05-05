@@ -3,13 +3,13 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        'vue-antdui': './src/index.js',
+        'one-antdui': './src/index.js',
         style: './src/index.js'
     },
     output: {
-        path: path.resolve(__dirname, '../package'),
-        publicPath: '/package/',
-        library: 'vue-antdui',
+        path: path.resolve(__dirname, '../dist'),
+        publicPath: '/dist/',
+        library: 'one-antdui',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

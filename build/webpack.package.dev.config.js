@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.package.config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var extractLESS = new ExtractTextPlugin('/style/antdui.css')
+var extractLESS = new ExtractTextPlugin('/style/one-antdui.css')
 
 module.exports = merge(baseWebpackConfig, {
     output: {
