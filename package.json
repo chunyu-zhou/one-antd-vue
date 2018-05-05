@@ -1,11 +1,11 @@
 {
-  "name": "vue-antdui",
-  "version": "1.0.0",
+  "name": "one-antdui",
+  "version": "1.0.1",
   "description": "Ant Design components built with Vue.js",
   "author": "One <admin@zcyso.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chunyu-zhou/vue-antdui.git"
+    "url": "git+https://github.com/chunyu-zhou/vue-antdui.git"
   },
   "homepage": "https://github.com/chunyu-zhou/vue-antdui",
   "license": "MIT",
@@ -95,5 +95,8 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/chunyu-zhou/vue-antdui/issues"
   }
 }
