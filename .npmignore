@@ -5,7 +5,7 @@ config/
 site/
 docs/
 node_modules/
-package/style.js
-package/style.min.js
+dist/style.js
+dist/style.min.js
 src/
 static/

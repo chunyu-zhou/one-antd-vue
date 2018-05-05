@@ -1,6 +1,6 @@
 {
   "name": "one-antdui",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Ant Design components built with Vue.js",
   "author": "One <admin@zcyso.com>",
   "repository": {
@@ -16,7 +16,7 @@
     "vue-component",
     "ant-design"
   ],
-  "main": "package/antdui.min.js",
+  "main": "dist/one-antdui.min.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
