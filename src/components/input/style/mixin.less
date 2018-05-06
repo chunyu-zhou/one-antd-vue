@@ -1,7 +1,7 @@
 @import "../../../style/themes/default";
 @import "../../../style/mixins/index";
 
-@input-affix-width: 17px;
+@input-affix-width: 24px;
 
 // size mixins for input
 .input-lg() {
@@ -202,6 +202,7 @@
     &:not(:last-child) .@{inputClass} {
       border-bottom-right-radius: 0;
       border-top-right-radius: 0;
+      border-right:0;
     }
   }
 
@@ -251,7 +252,7 @@
   }
 
   &&-compact {
-    display: block;
+    display: table;
     .clearfix;
 
     & > * {
