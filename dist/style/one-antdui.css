@@ -10604,6 +10604,7 @@ textarea.ant-input {
 .ant-input-group > .ant-input-affix-wrapper:not(:last-child) .ant-input {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  border-right: 0;
 }
 .ant-input-group-addon:first-child {
   border-right: 0;
@@ -10643,7 +10644,7 @@ textarea.ant-input {
   float: left;
 }
 .ant-input-group.ant-input-group-compact {
-  display: block;
+  display: table;
   zoom: 1;
 }
 .ant-input-group.ant-input-group-compact:before,
@@ -10730,13 +10731,39 @@ textarea.ant-input {
   right: 7px;
 }
 .ant-input-affix-wrapper .ant-input:not(:first-child) {
-  padding-left: 24px;
+  padding-left: 31px;
 }
 .ant-input-affix-wrapper .ant-input:not(:last-child) {
-  padding-right: 24px;
+  padding-right: 31px;
 }
 .ant-input-affix-wrapper .ant-input {
   min-height: 100%;
+}
+.ant-input-affix-wrapper .ant-input-prefix {
+  left: 12px;
+}
+.ant-input-affix-wrapper .ant-input-suffix {
+  right: 12px;
+}
+.ant-input-prefix {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+  line-height: 0;
+  color: rgba(0, 0, 0, 0.65);
+}
+.ant-input-suffix {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+  line-height: 0;
+  color: rgba(0, 0, 0, 0.65);
 }
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */

@@ -1,10 +1,12 @@
 <script>
 export default {
     data:()=> ({
+        date0: '',
         date1: '2015-12-06',
         date2: '2015-12-06',
         date3: '2015-12-06',
         date4: '2015-12-06',
+        rangeDate0: ['',''],
         rangeDate1: ['2015-12-06','2016-12-06'],
         rangeDate2: ['2015-12-06','2016-12-06'],
         rangeDate3: ['2015-12-06','2016-12-06'],
@@ -77,6 +79,9 @@ export default {
 
 ```html
 <template>                        
+    <v-date-picker v-model="date0" clearable @change="change"></v-date-picker>
+    <v-date-picker range v-model="rangeDate0" clearable @change="change"></v-date-picker>
+
     <v-date-picker v-model="date1" clearable @change="change"></v-date-picker>
     <v-date-picker v-model="rangeDate1" range clearable @confirm="confirm" @change="rangeChange"></v-date-picker>
 </template>

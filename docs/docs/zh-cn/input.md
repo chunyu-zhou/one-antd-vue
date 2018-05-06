@@ -161,7 +161,7 @@ export default {
 ::: demo
 <summary>
   #### 三种大小
-  我们为 < v-input > 输入框定义了三种尺寸（大、默认、小），高度分别为 32px、28px 和 22px。
+  我们为 < v-input > 输入框定义了三种尺寸（大、默认、小），高度分别为 40px、32px 和 24px。
 </summary>
 
 ```html

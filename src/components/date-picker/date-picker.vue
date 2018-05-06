@@ -5,18 +5,23 @@
             <i v-if="clearable&&label" @click.stop="clear" class="anticon anticon-cross-circle ant-calendar-picker-clear"></i>
             <span class="ant-calendar-picker-icon"></span>
         </span>
-        <transition :name="bottomSpace <0 ? 'slide-up' : 'slide-down'">
+        <!-- <transition :name="bottomSpace <0 ? 'slide-up' : 'slide-down'"> -->
+        <transition name="slide-up">
+
             <div class="ant-calendar-picker-container" :class="{'ant-calendar-picker-container-placement-bottomLeft':left}" v-show="show" tabindex="-1" @blur="show = false" @mousedown="$event.preventDefault()" @keyup.up="changeMonth(-1,1)" @click.stop @keyup.down="changeMonth(1,1)" @keyup.left="changeYear(-1,1)" @keyup.right="changeYear(1,1)" :style="containerStyle" ref="container">
                 <div :class="[prefix,{[prefix+'-range']:range},{[prefix+'-time']:showTime || range}]">
-                    <div class="ant-calendar-top" v-if="range">
-                        <template v-for="(item,index) in ranges">
-                            <i v-if="index"></i>
-                            <a v-text="item.name" :class="item.active?'on':''" @click="selectRange(index)"></a>
-                        </template>
-                    </div>
+
                     <div class="ant-calendar-date-panel">
                         <template v-for="no in count">
                             <div :class="range?'ant-calendar-range-part ant-calendar-range-left':''">
+                                <div class="ant-calendar-input-wrap">
+                                    <div class="ant-calendar-date-input-wrap">
+                                        <input :value="range?no=='1'?_startTime:_endTime:label" :placeholder="range?no=='1'?'请选择开始日期':'请选择结束日期':placeholder" class="ant-calendar-input" @mousedown="$event.preventDefault()" style="text-align: center;">
+                                    </div>
+                                </div>
+
+                                <span v-if="range&&no=='2'" class="ant-calendar-range-middle">至</span>
+
                                 <div class="ant-calendar-header">
                                     <a class="ant-calendar-prev-year-btn" :title="t('datePicker.lastYear')" @click="changeYear(-1,no)"></a>
                                     <a class="ant-calendar-prev-month-btn" :title="t('datePicker.lastMonth')" @click="changeMonth(-1,no)"></a>
@@ -81,6 +86,12 @@
                                     </div>
                                 </transition>
                             </div>
+                        </template>
+                    </div>
+                    <div class="ant-calendar-footer-extra" v-if="range">
+                        <template v-for="(item,index) in ranges">
+                            <i v-if="index"></i>
+                            <a v-text="item.name" :class="item.active?'on':''" @click="selectRange(index)"></a>
                         </template>
                     </div>
                     <div v-if="range || showTime" :class="[prefix+'-footer',{[prefix+'-range-bottom']:range}]">
@@ -198,6 +209,8 @@
                 startTime: this.range && this.value ? this.value[0] : '',
                 endTime: this.range && this.value ? this.value[1] : '',
                 bottomSpace: 0,
+                _startTime: '',
+                _endTime: '',
             };
         },
         computed: {
@@ -207,8 +220,8 @@
                     let startTime = '';
                     let endTime = '';
                     if (this.startTime && this.endTime) {
-                        startTime = this.stringify(this.parse(this.startTime, false));
-                        endTime = this.stringify(this.parse(this.endTime, false));
+                        this._startTime = startTime = this.stringify(this.parse(this.startTime, false));
+                        this._endTime = endTime = this.stringify(this.parse(this.endTime, false));
                         if (this.showTime) {
                             startTime = `${startTime} ${this.timeVal[0]}`;
                             endTime = `${endTime} ${this.timeVal[1]}`;
@@ -333,7 +346,8 @@
                     containerHeight = this.container.offsetHeight;
                 }
                 this.bottomSpace = p.bottom + pickerHeight - containerHeight;
-                const top = this.bottomSpace > 0 ? p.top - pickerHeight - 4 : p.bottom + 4;
+                // const top = this.bottomSpace > 0 ? p.top - pickerHeight - 4 : p.bottom + 4;
+                const top = p.top - 2;
 
                 this.containerStyle = {
                     top: `${top}px`,
@@ -763,11 +777,9 @@
 .ant-calendar-range.ant-calendar-time .ant-calendar-time-picker {
     top: 34px;
 }
-
-.ant-calendar-top {
-    color: #616161;
-    padding: 8px;
-    border-bottom: 1px solid #f3f3f3;
+.ant-calendar-footer-extra {
+    border-top: 1px solid #e8e8e8;
+    padding: 8px 12px;
 
     a {
         display: inline-block;
@@ -789,7 +801,7 @@
         width: 1px;
         margin: 0 10px;
         height: 16px;
-        background: #616161;
+        background: rgba(0, 0, 0, 0.43);
         vertical-align: middle;
     }
 }
@@ -808,4 +820,10 @@
         cursor: pointer;
     }
 }
+</style>
+<style>
+    .ant-calendar-range-middle{
+        left: 0;
+        top: 0;
+    }
 </style>
