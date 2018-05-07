@@ -33,6 +33,7 @@
     "date-fns": "^1.29.0",
     "deepmerge": "^2.1.0",
     "lodash": "^4.17.5",
+    "npm": "^6.0.0",
     "popper.js": "^0.6.4"
   },
   "devDependencies": {

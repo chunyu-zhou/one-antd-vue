@@ -4,7 +4,7 @@
             <div class="ant-row">
                 <div class="ant-col-xs-24 ant-col-sm-7 ant-col-md-6 ant-col-lg-4">
                     <a id="logo" href="https://github.com/chunyu-zhou/vue-antdui" target="_blank" title="github"><img
-                            alt="logo" src="./assets/src-logo.png"><span>Vue Beauty</span></a>
+                            alt="logo" src="./static/src-logo.png"><span>one antdui</span></a>
                 </div>
             </div>
             <div class="nav  ant-col-xs-0 ant-col-sm-17 ant-col-md-18 ant-col-lg-20">
