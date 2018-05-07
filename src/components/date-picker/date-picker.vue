@@ -1,11 +1,19 @@
 <template>
     <span :class="prefix+'-picker'" :style="styleObject" ref="wapper" v-clickoutside="closeDropdown">
-        <span>
+        <span v-if="!range">
             <input :value="label" :placeholder="placeholder" readonly :disabled="disabled" :class="['ant-calendar-range-picker','ant-input',{['ant-input-'+size]:size}]" @click="click" @mousedown="$event.preventDefault()">
             <i v-if="clearable&&label" @click.stop="clear" class="anticon anticon-cross-circle ant-calendar-picker-clear"></i>
             <span class="ant-calendar-picker-icon"></span>
         </span>
-        <!-- <transition :name="bottomSpace <0 ? 'slide-up' : 'slide-down'"> -->
+        
+		<span class="ant-calendar-picker-input ant-input" v-if="range"  @click="click" @mousedown="$event.preventDefault()">
+			<input readonly="" placeholder="开始时间" class="ant-calendar-range-picker-input" tabindex="-1" :value="_startTime">
+			<span class="ant-calendar-range-picker-separator"> ~ </span>
+			<input readonly="" placeholder="结束时间" class="ant-calendar-range-picker-input" tabindex="-1" :value="_endTime">
+			<i v-if="clearable&&label" @click.stop="clear" class="anticon anticon-cross-circle ant-calendar-picker-clear"></i>
+			<span class="ant-calendar-picker-icon"></span>
+		</span>
+        
         <transition name="slide-up">
 
             <div class="ant-calendar-picker-container" :class="{'ant-calendar-picker-container-placement-bottomLeft':left}" v-show="show" tabindex="-1" @blur="show = false" @mousedown="$event.preventDefault()" @keyup.up="changeMonth(-1,1)" @click.stop @keyup.down="changeMonth(1,1)" @keyup.left="changeYear(-1,1)" @keyup.right="changeYear(1,1)" :style="containerStyle" ref="container">
@@ -13,10 +21,10 @@
 
                     <div class="ant-calendar-date-panel">
                         <template v-for="no in count">
-                            <div :class="range?'ant-calendar-range-part ant-calendar-range-left':''">
+                            <div :class="[range?'ant-calendar-range-part ant-calendar-range-left':'', no == '2' ? 'ant-calendar-range-right' : '']">
                                 <div class="ant-calendar-input-wrap">
                                     <div class="ant-calendar-date-input-wrap">
-                                        <input :value="range?no=='1'?_startTime:_endTime:label" :placeholder="range?no=='1'?'请选择开始日期':'请选择结束日期':placeholder" class="ant-calendar-input" @mousedown="$event.preventDefault()" style="text-align: center;">
+                                        <input :value="range?no=='1'?_startTime:_endTime:label" :placeholder="range?no=='1'?'请选择开始时间':'请选择结束时间':placeholder" class="ant-calendar-input" @mousedown="$event.preventDefault()" style="text-align: center;">
                                     </div>
                                 </div>
 
@@ -96,8 +104,8 @@
                     </div>
                     <div v-if="range || showTime" :class="[prefix+'-footer',{[prefix+'-range-bottom']:range}]">
                         <component :is="range?'div':'span'" class="ant-calendar-footer-btn">
-                            <a v-if="showTime" :class="[prefix+'-time-picker-btn', {[prefix+'-time-picker-btn-disabled']: !timeBtnEnable}]" role="button" @click="selectTime">{{timeSelected?t('datePicker.selectDate'):t('datePicker.selectTime')}}</a>
-                            <a :class="{[prefix+'-ok-btn']: showTime}" role="button" @click="confirm">{{t('datePicker.confirm')}}</a>
+                            <a :disabled="!label" v-if="showTime" :class="[prefix+'-time-picker-btn', {[prefix+'-time-picker-btn-disabled']: !timeBtnEnable}]" role="button" @click="selectTime">{{timeSelected?t('datePicker.selectDate'):t('datePicker.selectTime')}}</a>
+                            <a :disabled="!label" :class="{[prefix+'-ok-btn']: showTime}" role="button" @click="confirm">{{t('datePicker.confirm')}}</a>
                         </component>
                     </div>
                 </div>
@@ -220,14 +228,16 @@
                     let startTime = '';
                     let endTime = '';
                     if (this.startTime && this.endTime) {
-                        this._startTime = startTime = this.stringify(this.parse(this.startTime, false));
-                        this._endTime = endTime = this.stringify(this.parse(this.endTime, false));
+                        startTime = this.stringify(this.parse(this.startTime, false));
+                        endTime = this.stringify(this.parse(this.endTime, false));
                         if (this.showTime) {
                             startTime = `${startTime} ${this.timeVal[0]}`;
                             endTime = `${endTime} ${this.timeVal[1]}`;
                         }
                         val = `${startTime} ~ ${endTime}`;
                     }
+                    this._startTime = startTime;
+                    this._endTime = endTime;
                 } else if (this.value) {
                     val = this.stringify(this.parse(this.value, false));
                     if (this.showTime) {
@@ -254,7 +264,7 @@
                         this.$set(this.styleObject, 'minWidth', '140px');
                     }
                 } else if (this.range) {
-                    this.$set(this.styleObject, 'minWidth', '180px');
+                    this.$set(this.styleObject, 'minWidth', '200px');
                 }
             }
             if (!this.$refs.wapper.style.width) {
@@ -759,6 +769,7 @@
                 this.timeSelected = false;
                 this.now1 = new Date();
                 this.now2 = new Date();
+                this._startTime = this._endTime = '';
             },
         },
     };

@@ -12,6 +12,7 @@ export default {
         rangeDate3: ['2015-12-06','2016-12-06'],
         time1: '2015-12-06 23:12',
         time2: '2015-12-06 23:12',
+        rangeTime0: ['',''],
         rangeTime1: ['2015-12-06 23:12','2016-12-06 23:59'],
         rangeTime2: ['2015-12-06 23:12','2016-12-06 23:12']
     }),
@@ -81,6 +82,7 @@ export default {
 <template>                        
     <v-date-picker v-model="date0" clearable @change="change"></v-date-picker>
     <v-date-picker range v-model="rangeDate0" clearable @change="change"></v-date-picker>
+    <v-date-picker range show-time v-model="rangeTime0" clearable @change="change"></v-date-picker>
 
     <v-date-picker v-model="date1" clearable @change="change"></v-date-picker>
     <v-date-picker v-model="rangeDate1" range clearable @confirm="confirm" @change="rangeChange"></v-date-picker>
@@ -258,7 +260,7 @@ export default {
 | position | 下拉框的定位方式(absolute、fixed) | string | absolute |
 | popupContainer | 下拉菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | function | () => document.body |
 | range | 能否进行范围选择 | boolean | false |
-| showTime  | 增加时间选择功能	 | boolean | false |
+| show-time  | 增加时间选择功能	 | boolean | false |
 | maxRange | 选择最大范围限制,以天为单位（只有range为true的时候才起作用） | number | - |
 | clearable | 是否显示清除按钮 | boolean | false |
 | format  | 展示的日期格式 | string | yyyy-MM-dd |

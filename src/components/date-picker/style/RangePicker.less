@@ -41,7 +41,7 @@
     float: left;
     .@{calendar-prefix-cls} {
       &-time-picker-inner {
-        border-right: 2px solid @border-color-split;
+//      border-right: 2px solid @border-color-split;
       }
     }
   }
@@ -180,11 +180,9 @@
       z-index: 2; // cover .ant-calendar-range .ant-calendar-in-range-cell > div (z-index: 1)
       &-panel {
         height: 241px;
-        margin-top: -34px;
       }
 
       &-inner {
-        padding-top: 34px;
         height: 100%;
         background: none;
       }
@@ -200,6 +198,9 @@
         ul {
           max-height: 100%;
         }
+      }
+      &-select:last-child {
+        border-right: 0;
       }
     }
     .@{calendar-prefix-cls}-footer-btn {

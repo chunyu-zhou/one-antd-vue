@@ -1,45 +1,16 @@
 <template lang="html">
 
     <div :class="tableCls" :style="{height:tableBodyHeight+'px'}">
-
-        <div :class="prefix + '-header'" :style="{left:-tableBodyScrollLeft+'px',width:tableBodyWidth}">
-            <table ref="theader" :style="{width:tableBodyWidth}">
-                <thead :class="prefix + '-thead'">
-                <tr>
-                    <th v-if="checkType" :class="prefix + '-selection-column'">
-                        <v-checkbox v-if="checkType=='checkbox'" :value="checkAllState"
-                                    @click="checkAllChange" :indeterminate="checkIndeterminate"></v-checkbox>
-                    </th>
-                    <template v-for="(column,cindex) in columns">
-                        <th :class="column.className" @click="column.sort && sort(column)" :style="{cursor:column.sort?'pointer':'text'}">
-                            <slot name="th" :title="column.title" :column="column" :cindex="cindex">
-                                {{column.title}}
-                            </slot>
-                            <template v-if="column.sort">
-                                <div :class="prefix + '-column-sorter'">
-                                    <span @click.stop="sort(column,'asc')" :class="prefix + '-column-sorter-up ' + (column.sort == 'asc' ? 'on' : 'off')" title="↑"><v-icon type="caret-up"></v-icon></span>
-                                    <span @click.stop="sort(column,'desc')" :class="prefix + '-column-sorter-down '+ (column.sort == 'desc' ? 'on' : 'off')" title="↓"><v-icon type="caret-down"></v-icon></span>
-                                </div>
-                            </template>
-                        </th>
-                    </template>
-                </tr>
-                </thead>
-            </table>
-        </div>
-
         <div ref="content" :class="[contentClass]" @scroll="scrollTableBody" @mouseout="mouseOutTable">
-
+			<div class="ant-table-scroll">
             <div :class="prefix + '-body'">
                 <v-spin :spinning="loading" :style="{minHeight: loading?'200px':'auto'}">
                     <table ref="tbody">
-
                         <thead :class="prefix + '-thead'">
                         <tr>
                             <th v-if="checkType" :class="prefix + '-selection-column'">
                                 <v-checkbox v-if="checkType=='checkbox'" :value="checkAllState" @click="checkAllChange" :indeterminate="checkIndeterminate"></v-checkbox>
                             </th>
-
                             <template v-for="(column,cindex) in columns">
                                 <th :style="{width:column.width,cursor:column.sort?'pointer':'text'}" :class="column.className" @click="column.sort && sort(column)">
                                     <slot name="th" :title="column.title" :column="column" :cindex="cindex">
@@ -94,8 +65,9 @@
                     </table>
                 </v-spin>
             </div>
+            </div>
 
-            <div v-if="fixedLeft && current.length" :class="prefix + '-fixed-left'" :style="{left:tableBodyScrollLeft+'px'}">
+            <div v-if="fixedLeft && current.length" :class="prefix + '-fixed-left'">
                 <div :class="prefix + '-body-outer'">
                     <div :class="prefix + '-body-inner'">
                         <table :class="prefix + '-fixed'">
@@ -151,7 +123,8 @@
                 </div>
             </div>
 
-            <div v-if="fixedRight && current.length" :class="prefix + '-fixed-right'" :style="{right:-tableBodyScrollLeft+'px'}">
+
+            <div v-if="fixedRight && current.length" :class="prefix + '-fixed-right'">
                 <div :class="prefix + '-body-outer'">
                     <div :class="prefix + '-body-inner'">
                         <table :class="prefix + '-fixed'">
@@ -196,71 +169,7 @@
             </div>
         </div>
 
-        <div v-if="fixedLeft" :class="prefix + '-fixed-left'">
-            <div :class="prefix + '-body-outer'">
-                <div :class="prefix + '-body-inner'">
-                    <table :class="prefix + '-fixed'" ref="fixedLeftHeader">
-
-                        <thead :class="prefix + '-thead'">
-                        <tr>
-                            <th style="display:inline-block;overflow:hidden" v-if="checkType" :class="prefix + '-selection-column'">
-                                <v-checkbox v-if="checkType=='checkbox'" :value="checkAllState" @click="checkAllChange" :indeterminate="checkIndeterminate"></v-checkbox>
-                            </th>
-
-                            <template v-for="(column,cindex) in columns">
-                                <th style="display:inline-block;overflow:hidden" v-if="cindex < fixedLeft" :class="column.className" @click="column.sort && sort(column)" :style="{cursor:column.sort?'pointer':'text'}">
-                                    <slot name="th" :title="column.title" :column="column" :cindex="cindex">
-                                        {{column.title}}
-                                    </slot>
-                                    <template v-if="column.sort">
-                                        <div :class="prefix + '-column-sorter'">
-                                            <span @click.stop="sort(column,'asc')"
-                                                  :class="prefix + '-column-sorter-up ' + (column.sort == 'asc' ? 'on' : 'off')"
-                                                  title="↑"><v-icon type="caret-up"></v-icon></span>
-                                            <span @click.stop="sort(column,'desc')"
-                                                  :class="prefix + '-column-sorter-down ' + (column.sort == 'desc' ? 'on' : 'off')"
-                                                  title="↓"><v-icon type="caret-down"></v-icon></span>
-                                        </div>
-                                    </template>
-                                </th>
-                            </template>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div v-if="fixedRight" :class="prefix + '-fixed-right'" :style="{paddingRight:(isFixScrollbar ? scrollbarWidth : 0)+'px'}">
-            <div :class="prefix + '-body-outer'">
-                <div :class="prefix + '-body-inner'">
-                    <table :class="prefix + '-fixed'" ref="fixedRightHeader">
-
-                        <thead :class="prefix + '-thead'">
-                        <tr>
-                            <template v-for="(column,cindex) in columns">
-                                <th style="display:inline-block;overflow:hidden" v-if="cindex >= columns.length - fixedRight" :class="column.className" @click="column.sort && sort(column)"  :style="{cursor:column.sort?'pointer':'text'}">
-                                    <slot name="th" :title="column.title" :column="column" :cindex="cindex">
-                                        {{column.title}}
-                                    </slot>
-                                    <template v-if="column.sort">
-                                        <div :class="prefix + '-column-sorter'">
-                                            <span @click.stop="sort(column,'asc')"
-                                                  :class="prefix + '-column-sorter-up ' + (column.sort == 'asc' ? 'on' : 'off')"
-                                                  title="↑"><v-icon type="caret-up"></v-icon></span>
-                                            <span @click.stop="sort(column,'desc')"
-                                                  :class="prefix + '-column-sorter-down ' + (column.sort == 'desc' ? 'on' : 'off')"
-                                                  title="↓"><v-icon type="caret-down"></v-icon></span>
-                                        </div>
-                                    </template>
-                                </th>
-                            </template>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
+        
 
         <div v-if="pagination && total" :class="prefix + '-footer'">
             <div :class="prefix + '-pagination'">
@@ -425,6 +334,7 @@ export default {
             sortModel: 'single',
             rowSelectionStates: [],
             tableBodyScrollLeft: 0,
+            tableBodyScrollRight: 0,
             tableBodyWidth: '100%',
             tableBodyHeight: null,
             pageNumber: this.pageNum,
@@ -769,6 +679,7 @@ export default {
         scrollTableBody(e) {
             const target = e.target || e.srcElement;
             this.tableBodyScrollLeft = target.scrollLeft;
+            this.tableBodyScrollRight = target.children[0].getBoundingClientRect().right - target.children[0].getBoundingClientRect().width > 50;
         },
         // 延时计算尺寸，用于组件内部re-render变化时重新计算
         debounceCalculate: debounce(function () {
@@ -1048,6 +959,8 @@ export default {
                 `${this.prefix}-${this.size}`,
                 { [`${this.prefix}-bordered`]: this.bordered },
                 { [`${this.prefix}-stripe`]: this.stripe },
+                { [`${this.prefix}-scroll-position-left`]: this.tableBodyScrollLeft < 1 },
+                { [`${this.prefix}-scroll-position-right`]: this.tableBodyScrollRight < 1 },
             ];
         },
         checkIndeterminate() {
