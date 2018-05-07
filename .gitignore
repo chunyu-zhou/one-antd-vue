@@ -12,3 +12,5 @@ test/e2e/reports
 .history
 .idea/
 .vscode/
+package-lock.json
+.project
