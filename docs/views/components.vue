@@ -212,6 +212,9 @@ export default {
             children: [{
                 name: 'Tooltip 文字提示',
                 link: { name: 'tooltipd' },
+            }, {
+                name: 'Trend 趋势标记',
+                link: { name: 'trend' },
             }],
         }],
     }),

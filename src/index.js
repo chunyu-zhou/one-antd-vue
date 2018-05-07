@@ -51,6 +51,7 @@ import treeSelect from './components/tree-select';
 import autoComplete from './components/auto-complete';
 import clickoutside from './directives/clickoutside';
 import tooltipd from './directives/tooltip';
+import trend from './components/trend';
 import { use, i18n } from './locale';
 
 import { version } from '../package.json';
@@ -138,6 +139,7 @@ const components = {
     carouselItem: carousel.item,
     treeSelect,
     autoComplete,
+    trend,
 };
 
 for (const item of Object.values(components)) {
@@ -227,6 +229,7 @@ export {
     carousel,
     treeSelect,
     autoComplete,
+    trend,
 };
 
 export default {

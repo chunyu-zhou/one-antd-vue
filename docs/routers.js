@@ -213,6 +213,10 @@ export default [{
         path: 'avatar',
         name: 'avatar',
         component: resolve => require(['./docs/zh-cn/avatar.md'], resolve),
+    }, {
+        path: 'trend',
+        name: 'trend',
+        component: resolve => require(['./docs/zh-cn/trend.md'], resolve),
     }],
 }, {
     path: '/demo/layout-fixed',
