@@ -217,6 +217,10 @@ export default [{
         path: 'trend',
         name: 'trend',
         component: resolve => require(['./docs/zh-cn/trend.md'], resolve),
+    }, {
+        path: 'scrollbar',
+        name: 'scrollbar',
+        component: resolve => require(['./docs/zh-cn/scrollbar.md'], resolve),
     }],
 }, {
     path: '/demo/layout-fixed',

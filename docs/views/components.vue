@@ -215,6 +215,9 @@ export default {
             }, {
                 name: 'Trend 趋势标记',
                 link: { name: 'trend' },
+            }, {
+                name: 'ElScrollbar 滚动条',
+                link: { name: 'scrollbar' },
             }],
         }],
     }),
