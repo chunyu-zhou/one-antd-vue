@@ -334,7 +334,7 @@ export default {
             sortModel: 'single',
             rowSelectionStates: [],
             tableBodyScrollLeft: 0,
-            tableBodyScrollRight: 0,
+            tableBodyScrollRight: 1,
             tableBodyWidth: '100%',
             tableBodyHeight: null,
             pageNumber: this.pageNum,
@@ -679,7 +679,7 @@ export default {
         scrollTableBody(e) {
             const target = e.target || e.srcElement;
             this.tableBodyScrollLeft = target.scrollLeft;
-            this.tableBodyScrollRight = target.children[0].getBoundingClientRect().right - target.children[0].getBoundingClientRect().width > 50;
+            this.tableBodyScrollRight = target.scrollLeft + 2 < target.scrollWidth - target.getBoundingClientRect().width;
         },
         // 延时计算尺寸，用于组件内部re-render变化时重新计算
         debounceCalculate: debounce(function () {
