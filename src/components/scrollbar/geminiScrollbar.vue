@@ -13,9 +13,10 @@
 </template>
 
 <script>
+import vueScrollbar from 'gemini-scrollbar'
 let geminiScrollbar
 export default {
-  name:'Elscrollbar',
+  name:'Scrollbar',
   props: {
     autoCreate: {
       type: Boolean,
@@ -25,7 +26,7 @@ export default {
       type: Boolean,
       default: false
     },
-    forceGemini: {
+    isforce: {
       type: Boolean,
       default: false
     },
@@ -35,7 +36,8 @@ export default {
     }
   },
   mounted () {
-    geminiScrollbar = new GS({
+    console.log(this.$props);
+    geminiScrollbar = new vueScrollbar({
       element: this.$refs.geminiScrollbar,
       createElements: false,
       onResize: () => {

@@ -1,11 +1,4 @@
-/**
- * gemini-scrollbar
- * @version 1.5.3
- * @link http://noeldelgado.github.io/gemini-scrollbar/
- * @license MIT
- */
-(function() {
-  var SCROLLBAR_WIDTH, DONT_CREATE_GEMINI, CLASSNAMES;
+const scrollbar = function(SCROLLBAR_WIDTH,DONT_CREATE_GEMINI,CLASSNAMES) {
 
   CLASSNAMES = {
     element: 'gm-scrollbar-container',
@@ -415,4 +408,5 @@
   } else {
     window.GeminiScrollbar = GeminiScrollbar;
   }
-})();
+}
+export default scrollbar;

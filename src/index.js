@@ -52,7 +52,7 @@ import autoComplete from './components/auto-complete';
 import clickoutside from './directives/clickoutside';
 import tooltipd from './directives/tooltip';
 import trend from './components/trend';
-import elscrollbar from './components/scrollbar';
+import Scrollbar from './components/scrollbar';
 import { use, i18n } from './locale';
 
 import { version } from '../package.json';
@@ -141,7 +141,7 @@ const components = {
     treeSelect,
     autoComplete,
     trend,
-    elscrollbar,
+    Scrollbar,
 };
 
 for (const item of Object.values(components)) {
@@ -232,7 +232,7 @@ export {
     treeSelect,
     autoComplete,
     trend,
-    elscrollbar,
+    Scrollbar,
 };
 
 export default {

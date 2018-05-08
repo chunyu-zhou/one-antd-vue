@@ -1,15 +1,10 @@
 import './style/index.less'
-import _Scrollbar from './geminiScrollbar.vue'
-import GS from '../../utils/gemini-scrollbar'
+import Scrollbar from './geminiScrollbar.vue'
+import GS from 'gemini-scrollbar'
 
-const ElScrollbar = function (Vue) {
-  Vue.component(_Scrollbar.name, _Scrollbar)
-  Vue.prototype.$geminiScrollbar = Vue.$geminiScrollbar = GS
-}
+Scrollbar.install = function(Vue) {
+  Vue.component(Scrollbar.name, Scrollbar);
+  Vue.prototype.$Scrollbar = Vue.$Scrollbar = GS
+};
 
-if (typeof window !== 'undefined' && window.Vue) {
-  ElScrollbar(window.Vue)
-  window.Vue.prototype.$geminiScrollbar = window.Vue.$geminiScrollbar = GS
-}
-
-export default ElScrollbar
+export default Scrollbar;

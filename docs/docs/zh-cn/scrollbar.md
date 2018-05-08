@@ -2,7 +2,7 @@
     export default {
         data: function () {
             return {
-                colorful: false
+                autoshow: true
             };
         },
     }
@@ -12,16 +12,16 @@
     height:200px;
 }
 </style>
-# Trend 趋势标记
+# Scrollbar 滚动条
 
-趋势符号，标记上升和下降趋势。通常用绿色代表“好”，红色代表“不好”，股票涨跌场景除外。
+在页面布局时可能需要用到
 
 ## 代码演示
 
 ::: demo
 <summary>
   #### 演示
-  在数值背后添加一个小图标来标识涨跌情况。
+  基本演示。
 </summary>
 
 ```html
@@ -29,7 +29,7 @@
     export default {
         data: function () {
             return {
-                colorful: false
+                autoshow: true
             };
         },
     }
@@ -41,7 +41,7 @@
 </style>
 <template>
 <div>
-    <v-elscrollbar class="my-scroll-bar">
+    <Scrollbar :autoshow="autoshow" class="my-scroll-bar">
         <div>content...</div>
         <div>content...</div>
         <div>content...</div>
@@ -58,7 +58,7 @@
         <div>content...</div>
         <div>content...</div>
         <div>content...</div>
-    </v-elscrollbar>
+    </Scrollbar>
 </div>
 </template>
 ```
@@ -69,5 +69,7 @@
 ### Affix Props
 | 参数        | 说明           | 类型               | 默认值       |
 |------------|----------------|-------------------|-------------|
-| colorful    | 是否彩色标记 | Boolean | true |
-| flag    | 上升下降标识：up、down | string | - |
+| autoCreate    | 自动创建自定义滚动条 | Boolean | true |
+| autoshow    | hover时才显示滚动条 | Boolean | false |
+| isforce    | 原生滚动条可见的情况下，强制显示自定义滚动条（开发时会比较有用） | Boolean | false |
+| minThumbSize    | 滚动条最小长度 | Number | 20 |
