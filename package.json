@@ -32,10 +32,10 @@
     "core-js": "^2.5.5",
     "date-fns": "^1.29.0",
     "deepmerge": "^2.1.0",
-    "gemini-scrollbar": "^1.5.3",
     "lodash": "^4.17.5",
     "npm": "^6.0.0",
-    "popper.js": "^0.6.4"
+    "popper.js": "^0.6.4",
+    "vuescroll": "^4.5.12"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",

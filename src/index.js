@@ -52,7 +52,8 @@ import autoComplete from './components/auto-complete';
 import clickoutside from './directives/clickoutside';
 import tooltipd from './directives/tooltip';
 import trend from './components/trend';
-import Scrollbar from './components/scrollbar';
+import scrollbar from './components/scrollbar';
+import vuescroll from 'vuescroll'
 import { use, i18n } from './locale';
 
 import { version } from '../package.json';
@@ -141,7 +142,8 @@ const components = {
     treeSelect,
     autoComplete,
     trend,
-    Scrollbar,
+    vuescroll,
+    scrollbar,
 };
 
 for (const item of Object.values(components)) {
@@ -232,7 +234,8 @@ export {
     treeSelect,
     autoComplete,
     trend,
-    Scrollbar,
+    vuescroll,
+    scrollbar,
 };
 
 export default {
